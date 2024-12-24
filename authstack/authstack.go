@@ -12,7 +12,8 @@ type AuthStack struct {
 
 func New() *AuthStack {
 	return &AuthStack{
-		users: make(map[string]*User),
+		users:  make(map[string]*User),
+		tokens: make(map[string]*User),
 	}
 }
 

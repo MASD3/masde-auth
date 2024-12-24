@@ -14,7 +14,7 @@ TODOS
 - [ ] figure out when to use bytes and when to use strings
 - [ ] make SDK for other langauges (python, node)
 - [ ] web client 
-- [ ] 
+- [ ] release
 
 # notes 
 [go password hashing](https://medium.com/@rnp0728/secure-password-hashing-in-go-a-comprehensive-guide-5500e19e7c1f)

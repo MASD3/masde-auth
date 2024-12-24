@@ -7,8 +7,9 @@ import (
 )
 
 type User struct {
-	uname string
-	phash []byte
+	uname string // username (max 72 bytes)
+	phash []byte // password hash (?? bytes)
+	token []byte // session token (16 bytes)
 }
 
 /* Generates a password hash and creates a new user struct */
@@ -24,5 +25,10 @@ func (aS *AuthStack) NewUser(uname, password string) (*User, error) {
 	return &User{
 		uname: uname,
 		phash: phash,
+		token: nil, // initial token is nil
 	}, nil
+}
+
+func (user *User) VerifyPassword(password string) error {
+	return bcrypt.CompareHashAndPassword(user.phash, []byte(password))
 }

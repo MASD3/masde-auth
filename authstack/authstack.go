@@ -6,8 +6,8 @@ import (
 )
 
 type AuthStack struct {
-	users  map[string]*User
-	tokens map[string]*User
+	users  map[string]*User // ASSUME PERSISTENT STORAGE
+	tokens map[string]*User // ASSUME PERSISTENT STORAGE
 }
 
 func New() *AuthStack {

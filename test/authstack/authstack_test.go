@@ -10,6 +10,10 @@ func TestAuthStack(t *testing.T) {
 	t.Run("register user", testRegisterUser)
 	t.Run("register and verify user", testRegisterAndVerifyUser)
 	t.Run("verify user with token", testVerifyUserWithToken)
+	// TODO:
+	// multiple users
+	// try to use old token
+	// duplicate users
 }
 
 func testRegisterUser(t *testing.T) {

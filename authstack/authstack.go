@@ -17,6 +17,15 @@ func New() *AuthStack {
 	}
 }
 
+/* Authenticates with token returning user obj */
+func (aS *AuthStack) AuthenticateWithToken(token []byte) (*User, error) {
+	user, ok := aS.tokens[string(token)]
+	if !ok {
+		return nil, errors.New("invalid token")
+	}
+	return user, nil
+}
+
 /* Authenticates with uname / password pair, returning user obj and session token */
 func (aS *AuthStack) AuthenticateWithPassword(uname, password string) ([]byte, *User, error) {
 	user, ok := aS.users[uname]

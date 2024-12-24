@@ -9,6 +9,7 @@ import (
 func TestAuthStack(t *testing.T) {
 	t.Run("register user", testRegisterUser)
 	t.Run("register and verify user", testRegisterAndVerifyUser)
+	t.Run("verify user with token", testVerifyUserWithToken)
 }
 
 func testRegisterUser(t *testing.T) {
@@ -34,5 +35,23 @@ func testRegisterAndVerifyUser(t *testing.T) {
 	_, _, err = aS.AuthenticateWithPassword(user.Username, password)
 	if err != nil {
 		t.Fatalf("Error verifying user: %s", err.Error())
+	}
+}
+
+func testVerifyUserWithToken(t *testing.T) {
+	aS := *authstack.New()
+	username := "kazuya123"
+	password := "St0ngP4ssw0rd"
+	user, err := aS.RegisterUser(username, password)
+	if err != nil {
+		t.Fatal("Error registering user")
+	}
+	token, _, err := aS.AuthenticateWithPassword(user.Username, password)
+	if err != nil {
+		t.Fatalf("Error verifying user: %s", err.Error())
+	}
+	_, err = aS.AuthenticateWithToken(token)
+	if err != nil {
+		t.Fatal("Error verifying token")
 	}
 }
